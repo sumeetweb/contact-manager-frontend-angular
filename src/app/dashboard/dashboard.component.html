@@ -1,17 +1,13 @@
 <app-navbar></app-navbar>
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12 overflow-auto">
-        <h1 class="text-white">
-            Logged in as {{ userFullName }}
-        </h1>
-        <h3 class="text-white">
-            User Email : {{ userEmail }} <br>
-            User Id : {{ userId }} <br>
-        </h3>
-        <p class="text-white">
-            User Authentication : {{ userAuthToken }}
-        </p>
+  <div class="row" *ngFor="let contact of contacts; let idx = index;">
+    <div class="col-md-3">{{ contact.name }}</div>
+    <div class="col-md-3">{{ contact.phone }}</div>
+    <div class="col-md-3">
+      <button class="btn btn-outline-light" routerLink="/contact/edit/{{contact._id}}">Update</button>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-outline-light" (click)="onDeleteContact(contact)">Delete</button>
     </div>
   </div>
 </div>

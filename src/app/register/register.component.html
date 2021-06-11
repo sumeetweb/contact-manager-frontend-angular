@@ -28,7 +28,7 @@
                                     placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" email required="">
                             </div>
                             <div *ngIf="uemail.touched">
-                                <div class="text-danger" *ngIf="uemail.errors || !uemail.valid else elseBlock">A valid Email is required</div>
+                                <div class="text-danger" *ngIf="uemail.errors || !uemail.valid else elseBlock">A Valid Email is required</div>
                                 <ng-template #elseBlock>
                                     <div class="text-danger" *ngIf="!emchk">Email already registered.</div>
                                 </ng-template>

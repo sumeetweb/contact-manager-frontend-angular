@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   baseUrlUser: "http://localhost:3000/api/users",
-  baseUrlContact: "http://localhost:3000/api/contacts"
+  baseUrlContact: "http://localhost:3000/api/contacts",
+  baseUrlUpload: "http://localhost:3000/uploads/"
 };
 
 /*

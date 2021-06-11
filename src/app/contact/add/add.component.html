@@ -1,1 +1,67 @@
-<p>add works!</p>
+<app-navbar></app-navbar>
+<div class="container mt-2 pt-3 mb-3 overflow-auto">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center m-auto">
+                        <h4 class="text-uppercase text-center pb-2">Add Contact</h4>
+                    </div>
+                    <div [class]="isSuccess? 'alert alert-success':'d-none'" class="my-2">{{ message }}</div>
+                    <div [class]="isError? 'alert alert-danger':'d-none'" class="my-2">{{ message }} </div>
+                    <form #addContactForm="ngForm" (ngSubmit)="onAddContact()">
+                        <div class="form-group mb-3">
+                            <div class="input-group bg-light">
+                                <input #cfname="ngModel" [(ngModel)]="contact.name"
+                                    [class.is-invalid]="cfname.errors && cfname.touched" type="text" name="fullName"
+                                    placeholder="Enter Full Name" class="form-control" minlength="1" required="">
+                            </div>
+                            <div *ngIf="cfname.errors && cfname.touched">
+                                <div class="text-danger" *ngIf="cfname.errors.required">Contact Name is required and must be atleast 1 character</div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="input-group bg-light">
+                                <input #cemail="ngModel" [(ngModel)]="contact.email"
+                                    [class.is-invalid]="cemail.errors && cemail.touched" type="email" name="email"
+                                    placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" email required="">
+                            </div>
+                            <div *ngIf="cemail.touched">
+                                <div class="text-danger" *ngIf="cemail.errors || !cemail.valid">A valid Email is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="input-group bg-light">
+                                <input #cphone="ngModel" [(ngModel)]="contact.phone"
+                                    [class.is-invalid]="cphone.errors && cphone.touched" type="text" name="phone"
+                                    placeholder="Enter Contact Number" pattern="[0-9]{10}" class="form-control" 
+                                    required="">
+                            </div>
+                            <div *ngIf="cphone.errors && cphone.touched">
+                                <div class="text-danger" *ngIf="cphone.errors.required">A valid contact phone number is required</div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="form-group mb-3">
+                            <label for="formFile" class="form-label">Upload Contact Image :</label>
+                            <input class="form-control" type="file" id="formFile" name="image" >
+                        </div>
+                         -->
+                        <div class="form-group mb-3">
+                            <div class="input-group bg-light">
+                                <input #ctype="ngModel" [(ngModel)]="contact.type"
+                                    type="text" name="Type" placeholder="Enter Contact Type" 
+                                    class="form-control" required="">
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 d-flex justify-content-between">
+                            <button class="btn btn-success btn-block" [disabled]="addContactForm.form.invalid"
+                                type="submit">Submit</button>
+                        </div>
+                    </form>
+                    <p class="pt-2"><a routerLink="/dashboard" class="theme-secondary-text">Go back to Contact List</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
