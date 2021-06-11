@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div class="container mt-5 pt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center m-auto">
+                        <h4 class="text-uppercase text-center pb-2">Login</h4>
+                    </div>
+                    <div [class]="isSuccess? 'alert alert-success':'d-none'" class="my-2">{{ message }}</div>
+                    <div [class]="isError? 'alert alert-danger':'d-none'" class="my-2">{{ message }} </div>
+                    <form #loginForm="ngForm" (ngSubmit)="onLoginForm()">
+                        <div class="form-group mb-3">
+                            <div class="input-group bg-light">
+                                <input #uemail="ngModel" [(ngModel)]="email"
+                                    [class.is-invalid]="uemail.errors && uemail.touched" type="email" name="email"
+                                    placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" email required="">
+                            </div>
+                            <div *ngIf="uemail.touched">
+                                <div class="text-danger" *ngIf="uemail.errors || !uemail.valid">A valid Email is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="input-group bg-light">
+                                <input #upass="ngModel" [(ngModel)]="password"
+                                    [class.is-invalid]="upass.errors && upass.touched" type="password" minlength="6"
+                                    class="form-control" value="" name="password" placeholder="Enter Password"
+                                    required="">
+                            </div>
+                            <div *ngIf="upass.errors && upass.touched">
+                                <div class="text-danger" *ngIf="upass.errors.required! else lenchk">Password is required</div>
+                                <ng-template #lenchk>
+                                    <div class="text-danger" *ngIf="upass.errors.minlength">Password must be at least 6 characters</div>
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3 d-flex justify-content-between">
+                            <button class="btn btn-success btn-block" [disabled]="loginForm.form.invalid"
+                                type="submit">Sign In </button>
+                        </div>
+                    </form>
+                    <p class="pt-2">Not Registered? <a routerLink="/register" class="theme-secondary-text">Create Account Here!</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
