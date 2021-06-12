@@ -14,6 +14,7 @@ export class AddComponent implements OnInit {
   public message!:string;
   public isSuccess:boolean = false;
   public isError:boolean = false;
+  public imageFile!:any;
   
   constructor(private _contact:ContactService) { }
 
@@ -21,9 +22,16 @@ export class AddComponent implements OnInit {
   }
 
   onAddContact(): void {
+    // let formData:any = {
+    //   name: this.contact.name,
+    //   email: this.contact.email,
+    //   phone: this.contact.phone,
+    //   type: this.contact.type,
+    //   image: this.imageFile
+    // };
+    // console.log(formData);
     this._contact.createContact(this.contact).subscribe(res=>{
       this.message = res.message;
-      console.log(res.contact);
       if(res.duplicate){
         this.isSuccess = false;
         this.isError = true;

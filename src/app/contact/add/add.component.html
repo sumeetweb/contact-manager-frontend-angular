@@ -41,12 +41,12 @@
                                 <div class="text-danger" *ngIf="cphone.errors.required">A valid contact phone number is required</div>
                             </div>
                         </div>
-                        <!--
-                        <div class="form-group mb-3">
+                                                 
+                        <!-- <div class="form-group mb-3">
                             <label for="formFile" class="form-label">Upload Contact Image :</label>
-                            <input class="form-control" type="file" id="formFile" name="image" >
-                        </div>
-                         -->
+                            <input #img="ngModel" [(ngModel)]="imageFile" class="form-control" type="file" id="formFile" name="image" >
+                        </div> -->
+                        
                         <div class="form-group mb-3">
                             <div class="input-group bg-light">
                                 <input #ctype="ngModel" [(ngModel)]="contact.type"

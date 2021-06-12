@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ContactService} from 'src/app/contact.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,14 +14,15 @@ export class DashboardComponent implements OnInit {
   public contacts:any[] = [];
   public isError:boolean = false;
 
-  constructor(private _contact:ContactService, private _router: Router) { }
+  constructor(private _contact:ContactService) { }
 
   ngOnInit(): void {
+    console.log(this.userEmail);
     this.loadContacts();
   }
 
   loadContacts():void {
-    this._contact.getContactsbyUserId().subscribe(res=>{
+    this._contact.getContactsbyUserId(this.userId).subscribe(res=>{
       console.log(res);
       this.contacts = res.contacts;
       if(res.contacts.length){

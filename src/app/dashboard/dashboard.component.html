@@ -1,13 +1,27 @@
 <app-navbar></app-navbar>
-<div class="container-fluid">
-  <div class="row" *ngFor="let contact of contacts; let idx = index;">
+<div class="container text-white ">
+  <div class="row text-center mt-3 pb-3 pt-3" style="background-color: black;">
+    <div class="col-md-3">Contact Name</div>
+    <div class="col-md-2">Contact Phone</div>
+    <div class="col-md-2">Contact Email</div>
+    <div class="col-md-2">Contact Type</div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="row text-center pt-2 pb-2" [class]="idx % 2 ? 'bg-secondary text-white':'bg-dark text-warning'" *ngFor="let contact of contacts; let idx = index;">
     <div class="col-md-3">{{ contact.name }}</div>
-    <div class="col-md-3">{{ contact.phone }}</div>
-    <div class="col-md-3">
-      <button class="btn btn-outline-light" routerLink="/contact/edit/{{contact._id}}">Update</button>
+    <div class="col-md-2">{{ contact.phone }}</div>
+    <div class="col-md-2">{{ contact.email }}</div>
+    <div class="col-md-2">{{ contact.type }}</div>
+    <div class="col-md-1">
+      <!-- <button class="btn btn-primary btn-outline-light ms-3 me-3" routerLink="/contact/view/{{contact._id}}">View</button> -->
     </div>
-    <div class="col-md-3">
-      <button class="btn btn-outline-light" (click)="onDeleteContact(contact)">Delete</button>
+    <div class="col-md-1">
+      <button class="btn btn-success btn-outline-light" routerLink="/contact/edit/{{contact._id}}">Update</button>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-danger btn-outline-light" (click)="onDeleteContact(contact)">Delete</button>
     </div>
   </div>
 </div>
